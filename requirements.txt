@@ -2,3 +2,4 @@ streamlit==1.21.0
 typing_extensions==4.5.0
 matplotlib==3.7.1
 pandas==1.5.3
+yaml==6.0.0
