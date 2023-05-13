@@ -39,7 +39,8 @@ max_freq_value = st.sidebar.slider('Max Freq', 0.0, 1.0,  value=1.0)
 min_depth_value = st.sidebar.slider('Min Depth', 0, int(df["depth"].max()))
 limit = st.sidebar.slider('Limit', 1.0, 0.0)
 
-tab1, tab2, tab3 = st.tabs(["plots", "information", "snippy tree"])
+tab1, tab2, tab3, tab4 = st.tabs(
+    ["plots", "information", "snippy tree", "ivar tree"])
 with tab1:
 
     df_selection = df.query(
@@ -171,6 +172,7 @@ with tab1:
 with tab2:
     info_dict = get_info_from_structure(df_selection)
     st.write(info_dict)
+
 with tab3:
     st.title("Original Snippy Tree")
     with open("./software/snippy/validated_tree.pdf", "rb") as f:
@@ -180,6 +182,32 @@ with tab3:
 
     st.title("All Snippy Minor Variants Tree")
     with open("./software/snippy/minor_tree.tree.pdf", "rb") as f_minor:
+        base64_pdf_minor = base64.b64encode(f_minor.read()).decode('utf-8')
+        pdf_display_minor = F'<iframe src="data:application/pdf;base64,{base64_pdf_minor}" width="700" height="1000" type="application/pdf"></iframe>'
+        st.markdown(pdf_display_minor, unsafe_allow_html=True)
+
+    st.title("All Snippy Minor Variants Tree with Freq above 0.10")
+    with open("./software/snippy/tree_with_minor_10_snippy.tree.pdf", "rb") as f_minor:
+        base64_pdf_minor = base64.b64encode(f_minor.read()).decode('utf-8')
+        pdf_display_minor = F'<iframe src="data:application/pdf;base64,{base64_pdf_minor}" width="700" height="1000" type="application/pdf"></iframe>'
+        st.markdown(pdf_display_minor, unsafe_allow_html=True)
+
+
+with tab4:
+    st.title("Original iVar Tree")
+    with open("./software/ivar/ivar.tree.pdf", "rb") as f:
+        base64_pdf = base64.b64encode(f.read()).decode('utf-8')
+        pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf"></iframe>'
+        st.markdown(pdf_display, unsafe_allow_html=True)
+
+    st.title("All iVar Minor Variants Tree")
+    with open("./software/ivar/ivar_minor.tree.pdf", "rb") as f_minor:
+        base64_pdf_minor = base64.b64encode(f_minor.read()).decode('utf-8')
+        pdf_display_minor = F'<iframe src="data:application/pdf;base64,{base64_pdf_minor}" width="700" height="1000" type="application/pdf"></iframe>'
+        st.markdown(pdf_display_minor, unsafe_allow_html=True)
+
+    st.title("All iVar Minor Variants Tree with Freq above 0.10")
+    with open("./software/ivar/tree_with_minor_10.tree.pdf", "rb") as f_minor:
         base64_pdf_minor = base64.b64encode(f_minor.read()).decode('utf-8')
         pdf_display_minor = F'<iframe src="data:application/pdf;base64,{base64_pdf_minor}" width="700" height="1000" type="application/pdf"></iframe>'
         st.markdown(pdf_display_minor, unsafe_allow_html=True)
