@@ -207,7 +207,7 @@ with tab4:
         st.markdown(pdf_display_minor, unsafe_allow_html=True)
 
     st.title("All iVar Minor Variants Tree with Freq above 0.10")
-    with open("./software/ivar/tree_with_minor_10.tree.pdf", "rb") as f_minor:
+    with open("./software/ivar/tree_with_minor_10_ivar.tree.pdf", "rb") as f_minor:
         base64_pdf_minor = base64.b64encode(f_minor.read()).decode('utf-8')
         pdf_display_minor = F'<iframe src="data:application/pdf;base64,{base64_pdf_minor}" width="700" height="1000" type="application/pdf"></iframe>'
         st.markdown(pdf_display_minor, unsafe_allow_html=True)
