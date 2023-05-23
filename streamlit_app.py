@@ -39,8 +39,12 @@ max_freq_value = st.sidebar.slider('Max Freq', 0.0, 1.0,  value=1.0)
 min_depth_value = st.sidebar.slider('Min Depth', 0, int(df["depth"].max()))
 limit = st.sidebar.slider('Limit', 1.0, 0.0)
 
-tab1, tab2, tab3, tab4 = st.tabs(
-    ["plots", "information", "snippy tree", "ivar tree"])
+tab1, tab2, tab3, tab4, tab5 = st.tabs(
+    ["plots",
+     "information",
+     "snippy tree",
+     "ivar tree",
+     "chi-test"])
 with tab1:
 
     df_selection = df.query(
@@ -211,3 +215,20 @@ with tab4:
         base64_pdf_minor = base64.b64encode(f_minor.read()).decode('utf-8')
         pdf_display_minor = F'<iframe src="data:application/pdf;base64,{base64_pdf_minor}" width="700" height="1000" type="application/pdf"></iframe>'
         st.markdown(pdf_display_minor, unsafe_allow_html=True)
+with tab5:
+    table_md = '''
+|   Snippy/iVar   | True | False |
+|---------|------|-------|
+|  **True**   | 20867|  269  |
+|  **False** |  35  |   0   |
+'''
+
+# Display the table using st.markdown()
+    st.markdown(table_md)
+
+    st.markdown(
+        """
+Chi-squared: 0.0000
+p-value: 1.0000
+            """
+    )
