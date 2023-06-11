@@ -1,3 +1,2 @@
-# Run with the following command:
-
-`streamlit run hello.py`
+# Check the app:
+https://rdrigoe-streamlit-monkeypox-streamlit-app-lj4yat.streamlit.app/
